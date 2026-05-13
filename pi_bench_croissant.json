@@ -58,12 +58,102 @@
     },
     {
       "@type": "cr:FileSet",
-      "@id": "parquet-files-for-config-default",
+      "@id": "parquet-files-for-config-CTC_ConfiQA",
       "containedIn": {
         "@id": "repo"
       },
       "encodingFormat": "application/x-parquet",
-      "includes": "default/*/*.parquet"
+      "includes": "CTC_ConfiQA/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-CTC_Faithful",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "CTC_Faithful/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-CTC_TriviaQA_corrected",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "CTC_TriviaQA_corrected/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-CTC_WebQA_corrected",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "CTC_WebQA_corrected/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-Trivia_Clarification_hard",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "Trivia_Clarification_hard/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-Trivia_Clarification_medium",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "Trivia_Clarification_medium/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-Trivia_Clarification_mild",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "Trivia_Clarification_mild/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-WebQA_Clarification_hard",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "WebQA_Clarification_hard/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-WebQA_Clarification_medium",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "WebQA_Clarification_medium/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-WebQA_Clarification_mild",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "WebQA_Clarification_mild/*/*.parquet"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "parquet-files-for-config-swbd_backchannel",
+      "containedIn": {
+        "@id": "repo"
+      },
+      "encodingFormat": "application/x-parquet",
+      "includes": "swbd_backchannel/*/*.parquet"
     }
   ],
   "recordSet": [
@@ -71,73 +161,1624 @@
       "@type": "cr:RecordSet",
       "dataType": "cr:Split",
       "key": {
-        "@id": "default_splits/split_name"
+        "@id": "CTC_ConfiQA_splits/split_name"
       },
-      "@id": "default_splits",
-      "name": "default_splits",
-      "description": "Splits for the default config.",
+      "@id": "CTC_ConfiQA_splits",
+      "name": "CTC_ConfiQA_splits",
+      "description": "Splits for the CTC_ConfiQA config.",
       "field": [
         {
           "@type": "cr:Field",
-          "@id": "default_splits/split_name",
+          "@id": "CTC_ConfiQA_splits/split_name",
           "dataType": "sc:Text"
         }
       ],
       "data": [
         {
-          "default_splits/split_name": "test"
+          "CTC_ConfiQA_splits/split_name": "test"
         }
       ]
     },
     {
       "@type": "cr:RecordSet",
-      "@id": "default",
-      "description": "neurips2026-pi-bench/pi_bench - 'default' subset",
+      "@id": "CTC_ConfiQA",
+      "description": "neurips2026-pi-bench/pi_bench - 'CTC_ConfiQA' subset",
       "field": [
         {
           "@type": "cr:Field",
-          "@id": "default/split",
+          "@id": "CTC_ConfiQA/split",
           "dataType": "sc:Text",
           "source": {
             "fileSet": {
-              "@id": "parquet-files-for-config-default"
+              "@id": "parquet-files-for-config-CTC_ConfiQA"
             },
             "extract": {
               "fileProperty": "fullpath"
             },
             "transform": {
-              "regex": "default/(?:partial-)?(test)/.+parquet$"
+              "regex": "CTC_ConfiQA/(?:partial-)?(test)/.+parquet$"
             }
           },
           "references": {
             "field": {
-              "@id": "default_splits/split_name"
+              "@id": "CTC_ConfiQA_splits/split_name"
             }
           }
         },
         {
           "@type": "cr:Field",
-          "@id": "default/audio",
+          "@id": "CTC_ConfiQA/id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_ConfiQA"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_ConfiQA/Q",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_ConfiQA"
+            },
+            "extract": {
+              "column": "Q"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_ConfiQA/context",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_ConfiQA"
+            },
+            "extract": {
+              "column": "context"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_ConfiQA/answer",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_ConfiQA"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_ConfiQA/task",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_ConfiQA"
+            },
+            "extract": {
+              "column": "task"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_ConfiQA/audio",
           "dataType": "sc:AudioObject",
           "source": {
             "fileSet": {
-              "@id": "parquet-files-for-config-default"
+              "@id": "parquet-files-for-config-CTC_ConfiQA"
             },
             "extract": {
               "column": "audio"
             }
           }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "CTC_Faithful_splits/split_name"
+      },
+      "@id": "CTC_Faithful_splits",
+      "name": "CTC_Faithful_splits",
+      "description": "Splits for the CTC_Faithful config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_Faithful_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "CTC_Faithful_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "CTC_Faithful",
+      "description": "neurips2026-pi-bench/pi_bench - 'CTC_Faithful' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_Faithful/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_Faithful"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "CTC_Faithful/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "CTC_Faithful_splits/split_name"
+            }
+          }
         },
         {
           "@type": "cr:Field",
-          "@id": "default/label",
-          "dataType": "sc:Integer",
+          "@id": "CTC_Faithful/id",
+          "dataType": "sc:Text",
           "source": {
             "fileSet": {
-              "@id": "parquet-files-for-config-default"
+              "@id": "parquet-files-for-config-CTC_Faithful"
             },
             "extract": {
-              "column": "label"
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_Faithful/Q",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_Faithful"
+            },
+            "extract": {
+              "column": "Q"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_Faithful/context",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_Faithful"
+            },
+            "extract": {
+              "column": "context"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_Faithful/answer",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_Faithful"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_Faithful/task",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_Faithful"
+            },
+            "extract": {
+              "column": "task"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_Faithful/audio",
+          "dataType": "sc:AudioObject",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_Faithful"
+            },
+            "extract": {
+              "column": "audio"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "CTC_TriviaQA_corrected_splits/split_name"
+      },
+      "@id": "CTC_TriviaQA_corrected_splits",
+      "name": "CTC_TriviaQA_corrected_splits",
+      "description": "Splits for the CTC_TriviaQA_corrected config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_TriviaQA_corrected_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "CTC_TriviaQA_corrected_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "CTC_TriviaQA_corrected",
+      "description": "neurips2026-pi-bench/pi_bench - 'CTC_TriviaQA_corrected' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_TriviaQA_corrected/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_TriviaQA_corrected"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "CTC_TriviaQA_corrected/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "CTC_TriviaQA_corrected_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_TriviaQA_corrected/id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_TriviaQA_corrected"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_TriviaQA_corrected/task",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_TriviaQA_corrected"
+            },
+            "extract": {
+              "column": "task"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_TriviaQA_corrected/Q",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_TriviaQA_corrected"
+            },
+            "extract": {
+              "column": "Q"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_TriviaQA_corrected/answer",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_TriviaQA_corrected"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_TriviaQA_corrected/audio",
+          "dataType": "sc:AudioObject",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_TriviaQA_corrected"
+            },
+            "extract": {
+              "column": "audio"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "CTC_WebQA_corrected_splits/split_name"
+      },
+      "@id": "CTC_WebQA_corrected_splits",
+      "name": "CTC_WebQA_corrected_splits",
+      "description": "Splits for the CTC_WebQA_corrected config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_WebQA_corrected_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "CTC_WebQA_corrected_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "CTC_WebQA_corrected",
+      "description": "neurips2026-pi-bench/pi_bench - 'CTC_WebQA_corrected' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_WebQA_corrected/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_WebQA_corrected"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "CTC_WebQA_corrected/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "CTC_WebQA_corrected_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_WebQA_corrected/id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_WebQA_corrected"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_WebQA_corrected/task",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_WebQA_corrected"
+            },
+            "extract": {
+              "column": "task"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_WebQA_corrected/Q",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_WebQA_corrected"
+            },
+            "extract": {
+              "column": "Q"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_WebQA_corrected/answer",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_WebQA_corrected"
+            },
+            "extract": {
+              "column": "answer"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "CTC_WebQA_corrected/audio",
+          "dataType": "sc:AudioObject",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-CTC_WebQA_corrected"
+            },
+            "extract": {
+              "column": "audio"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "Trivia_Clarification_hard_splits/split_name"
+      },
+      "@id": "Trivia_Clarification_hard_splits",
+      "name": "Trivia_Clarification_hard_splits",
+      "description": "Splits for the Trivia_Clarification_hard config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_hard_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "Trivia_Clarification_hard_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "Trivia_Clarification_hard",
+      "description": "neurips2026-pi-bench/pi_bench - 'Trivia_Clarification_hard' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_hard/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_hard"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "Trivia_Clarification_hard/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "Trivia_Clarification_hard_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_hard/id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_hard"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_hard/task",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_hard"
+            },
+            "extract": {
+              "column": "task"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_hard/level",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_hard"
+            },
+            "extract": {
+              "column": "level"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_hard/keyowrd",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "Trivia_Clarification_hard/keyowrd/text",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-Trivia_Clarification_hard"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "Trivia_Clarification_hard/keyowrd/span_sec",
+              "dataType": "cr:Float64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-Trivia_Clarification_hard"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_sec"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "Trivia_Clarification_hard/keyowrd/span_source",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-Trivia_Clarification_hard"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_source"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_hard/Q",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_hard"
+            },
+            "extract": {
+              "column": "Q"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_hard/audio",
+          "dataType": "sc:AudioObject",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_hard"
+            },
+            "extract": {
+              "column": "audio"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "Trivia_Clarification_medium_splits/split_name"
+      },
+      "@id": "Trivia_Clarification_medium_splits",
+      "name": "Trivia_Clarification_medium_splits",
+      "description": "Splits for the Trivia_Clarification_medium config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_medium_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "Trivia_Clarification_medium_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "Trivia_Clarification_medium",
+      "description": "neurips2026-pi-bench/pi_bench - 'Trivia_Clarification_medium' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_medium/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_medium"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "Trivia_Clarification_medium/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "Trivia_Clarification_medium_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_medium/id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_medium"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_medium/task",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_medium"
+            },
+            "extract": {
+              "column": "task"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_medium/level",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_medium"
+            },
+            "extract": {
+              "column": "level"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_medium/keyowrd",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "Trivia_Clarification_medium/keyowrd/text_0",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-Trivia_Clarification_medium"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "Trivia_Clarification_medium/keyowrd/span_sec_0",
+              "dataType": "cr:Float64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-Trivia_Clarification_medium"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_sec"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "Trivia_Clarification_medium/keyowrd/span_source_0",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-Trivia_Clarification_medium"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_source"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_medium/Q",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_medium"
+            },
+            "extract": {
+              "column": "Q"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_medium/audio",
+          "dataType": "sc:AudioObject",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_medium"
+            },
+            "extract": {
+              "column": "audio"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "Trivia_Clarification_mild_splits/split_name"
+      },
+      "@id": "Trivia_Clarification_mild_splits",
+      "name": "Trivia_Clarification_mild_splits",
+      "description": "Splits for the Trivia_Clarification_mild config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_mild_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "Trivia_Clarification_mild_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "Trivia_Clarification_mild",
+      "description": "neurips2026-pi-bench/pi_bench - 'Trivia_Clarification_mild' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_mild/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_mild"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "Trivia_Clarification_mild/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "Trivia_Clarification_mild_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_mild/id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_mild"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_mild/task",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_mild"
+            },
+            "extract": {
+              "column": "task"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_mild/level",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_mild"
+            },
+            "extract": {
+              "column": "level"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_mild/keyowrd",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "Trivia_Clarification_mild/keyowrd/text_0_0",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-Trivia_Clarification_mild"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "Trivia_Clarification_mild/keyowrd/span_sec_0_0",
+              "dataType": "cr:Float64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-Trivia_Clarification_mild"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_sec"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "Trivia_Clarification_mild/keyowrd/span_source_0_0",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-Trivia_Clarification_mild"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_source"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_mild/Q",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_mild"
+            },
+            "extract": {
+              "column": "Q"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "Trivia_Clarification_mild/audio",
+          "dataType": "sc:AudioObject",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-Trivia_Clarification_mild"
+            },
+            "extract": {
+              "column": "audio"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "WebQA_Clarification_hard_splits/split_name"
+      },
+      "@id": "WebQA_Clarification_hard_splits",
+      "name": "WebQA_Clarification_hard_splits",
+      "description": "Splits for the WebQA_Clarification_hard config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_hard_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "WebQA_Clarification_hard_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "WebQA_Clarification_hard",
+      "description": "neurips2026-pi-bench/pi_bench - 'WebQA_Clarification_hard' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_hard/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_hard"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "WebQA_Clarification_hard/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "WebQA_Clarification_hard_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_hard/id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_hard"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_hard/task",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_hard"
+            },
+            "extract": {
+              "column": "task"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_hard/level",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_hard"
+            },
+            "extract": {
+              "column": "level"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_hard/keyowrd",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "WebQA_Clarification_hard/keyowrd/text_0_0_0",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-WebQA_Clarification_hard"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "WebQA_Clarification_hard/keyowrd/span_sec_0_0_0",
+              "dataType": "cr:Float64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-WebQA_Clarification_hard"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_sec"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "WebQA_Clarification_hard/keyowrd/span_source_0_0_0",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-WebQA_Clarification_hard"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_source"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_hard/Q",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_hard"
+            },
+            "extract": {
+              "column": "Q"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_hard/audio",
+          "dataType": "sc:AudioObject",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_hard"
+            },
+            "extract": {
+              "column": "audio"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "WebQA_Clarification_medium_splits/split_name"
+      },
+      "@id": "WebQA_Clarification_medium_splits",
+      "name": "WebQA_Clarification_medium_splits",
+      "description": "Splits for the WebQA_Clarification_medium config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_medium_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "WebQA_Clarification_medium_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "WebQA_Clarification_medium",
+      "description": "neurips2026-pi-bench/pi_bench - 'WebQA_Clarification_medium' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_medium/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_medium"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "WebQA_Clarification_medium/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "WebQA_Clarification_medium_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_medium/id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_medium"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_medium/task",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_medium"
+            },
+            "extract": {
+              "column": "task"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_medium/level",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_medium"
+            },
+            "extract": {
+              "column": "level"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_medium/keyowrd",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "WebQA_Clarification_medium/keyowrd/text_0_0_0_0",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-WebQA_Clarification_medium"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "WebQA_Clarification_medium/keyowrd/span_sec_0_0_0_0",
+              "dataType": "cr:Float64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-WebQA_Clarification_medium"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_sec"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "WebQA_Clarification_medium/keyowrd/span_source_0_0_0_0",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-WebQA_Clarification_medium"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_source"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_medium/Q",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_medium"
+            },
+            "extract": {
+              "column": "Q"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_medium/audio",
+          "dataType": "sc:AudioObject",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_medium"
+            },
+            "extract": {
+              "column": "audio"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "WebQA_Clarification_mild_splits/split_name"
+      },
+      "@id": "WebQA_Clarification_mild_splits",
+      "name": "WebQA_Clarification_mild_splits",
+      "description": "Splits for the WebQA_Clarification_mild config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_mild_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "WebQA_Clarification_mild_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "WebQA_Clarification_mild",
+      "description": "neurips2026-pi-bench/pi_bench - 'WebQA_Clarification_mild' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_mild/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_mild"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "WebQA_Clarification_mild/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "WebQA_Clarification_mild_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_mild/id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_mild"
+            },
+            "extract": {
+              "column": "id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_mild/task",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_mild"
+            },
+            "extract": {
+              "column": "task"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_mild/level",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_mild"
+            },
+            "extract": {
+              "column": "level"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_mild/keyowrd",
+          "subField": [
+            {
+              "@type": "cr:Field",
+              "@id": "WebQA_Clarification_mild/keyowrd/text_0_0_0_0_0",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-WebQA_Clarification_mild"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "text"
+                }
+              }
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "WebQA_Clarification_mild/keyowrd/span_sec_0_0_0_0_0",
+              "dataType": "cr:Float64",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-WebQA_Clarification_mild"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_sec"
+                }
+              },
+              "isArray": true,
+              "arrayShape": "-1"
+            },
+            {
+              "@type": "cr:Field",
+              "@id": "WebQA_Clarification_mild/keyowrd/span_source_0_0_0_0_0",
+              "dataType": "sc:Text",
+              "source": {
+                "fileSet": {
+                  "@id": "parquet-files-for-config-WebQA_Clarification_mild"
+                },
+                "extract": {
+                  "column": "keyowrd"
+                },
+                "transform": {
+                  "jsonPath": "span_source"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_mild/Q",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_mild"
+            },
+            "extract": {
+              "column": "Q"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "WebQA_Clarification_mild/audio",
+          "dataType": "sc:AudioObject",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-WebQA_Clarification_mild"
+            },
+            "extract": {
+              "column": "audio"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "dataType": "cr:Split",
+      "key": {
+        "@id": "swbd_backchannel_splits/split_name"
+      },
+      "@id": "swbd_backchannel_splits",
+      "name": "swbd_backchannel_splits",
+      "description": "Splits for the swbd_backchannel config.",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "swbd_backchannel_splits/split_name",
+          "dataType": "sc:Text"
+        }
+      ],
+      "data": [
+        {
+          "swbd_backchannel_splits/split_name": "test"
+        }
+      ]
+    },
+    {
+      "@type": "cr:RecordSet",
+      "@id": "swbd_backchannel",
+      "description": "neurips2026-pi-bench/pi_bench - 'swbd_backchannel' subset",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "swbd_backchannel/split",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-swbd_backchannel"
+            },
+            "extract": {
+              "fileProperty": "fullpath"
+            },
+            "transform": {
+              "regex": "swbd_backchannel/(?:partial-)?(test)/.+parquet$"
+            }
+          },
+          "references": {
+            "field": {
+              "@id": "swbd_backchannel_splits/split_name"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "swbd_backchannel/sample_id",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-swbd_backchannel"
+            },
+            "extract": {
+              "column": "sample_id"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "swbd_backchannel/t0",
+          "dataType": "cr:Float64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-swbd_backchannel"
+            },
+            "extract": {
+              "column": "t0"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "swbd_backchannel/t1",
+          "dataType": "cr:Float64",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-swbd_backchannel"
+            },
+            "extract": {
+              "column": "t1"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "swbd_backchannel/primary_speaker",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-swbd_backchannel"
+            },
+            "extract": {
+              "column": "primary_speaker"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "swbd_backchannel/backchanneler",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "parquet-files-for-config-swbd_backchannel"
+            },
+            "extract": {
+              "column": "backchanneler"
             }
           }
         }
@@ -146,9 +1787,10 @@
   ],
   "conformsTo": "http://mlcommons.org/croissant/1.1",
   "name": "pi_bench",
-  "description": "neurips2026-pi-bench/pi_bench dataset hosted on Hugging Face and contributed by the HF Datasets community",
+  "description": "\n\t\n\t\t\n\t\tpi-bench\n\t\n\npi-bench is a multi-task audio benchmark prepared for public hosting and evaluation reproducibility. The repository is organized as a Hugging Face dataset with one dataset config per task file under data/, so each benchmark subset is visible and loadable independently.\n\n\t\n\t\t\n\t\tOverview\n\t\n\nThe current release contains 11 task-specific configs spanning three broad categories:\n\nCounterfactual/contextual QA (CTC_*)\nClarification-seeking QA (Trivia_Clarification_*… See the full description on the dataset page: https://huggingface.co/datasets/neurips2026-pi-bench/pi_bench.",
   "alternateName": [
-    "neurips2026-pi-bench/pi_bench"
+    "neurips2026-pi-bench/pi_bench",
+    "pi-bench"
   ],
   "creator": {
     "@type": "Person",
@@ -156,12 +1798,22 @@
     "url": "https://huggingface.co/neurips2026-pi-bench"
   },
   "keywords": [
-    "\u003C 1K",
-    "soundfolder",
+    "automatic-speech-recognition",
+    "question-answering",
+    "English",
+    "other",
+    "1K - 10K",
+    "parquet",
+    "optimized-parquet",
     "Audio",
+    "Tabular",
+    "Text",
     "Datasets",
+    "pandas",
+    "Polars",
     "Croissant",
     "🇺🇸 Region: US"
   ],
+  "license": "https://choosealicense.com/licenses/other/",
   "url": "https://huggingface.co/datasets/neurips2026-pi-bench/pi_bench"
 }
